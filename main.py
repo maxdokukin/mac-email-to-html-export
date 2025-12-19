@@ -14,7 +14,7 @@ from email.utils import parsedate_to_datetime
 # --- CONFIGURATION ---
 OUTPUT_DIR_NAME = "Mac_Mail_Archive_Strict_Debug"
 
-# CSS (No changes)
+# CSS (Updated margin for thread count)
 RETRO_CSS = """
 <style>
     :root {
@@ -116,7 +116,7 @@ RETRO_CSS = """
         border-radius: 8px;
         padding: 0 5px;
         font-size: 9px;
-        margin-left: 5px;
+        margin-right: 5px; /* FIXED: Moved margin to right for prefix positioning */
         font-weight: bold;
         display: inline-block;
     }
@@ -320,7 +320,7 @@ def main():
     if not os.path.exists(input_path): return print("Folder not found.")
 
     original_folder_name = os.path.basename(input_path.rstrip(os.sep))
-    output_path = os.path.join(os.path.dirname(input_path), f"{original_folder_name}_Debug_Threaded")
+    output_path = os.path.join(os.path.dirname(input_path), f"{original_folder_name}_html")
 
     if os.path.exists(output_path): shutil.rmtree(output_path)
     data_dir = os.path.join(output_path, "data")
@@ -544,15 +544,20 @@ def main():
 
     rows_html = ""
     for t in final_threads:
+        # FIXED: Date format to YYYY-MM-DD HH:MM
+        formatted_date = t['sort_dt'].strftime('%Y-%m-%d %H:%M')
+
+        # FIXED: Badge placed before topic
         badge = f'<span class="thread-count">{t["count"]}</span>' if t["count"] > 1 else ""
+
         rows_html += f"""
         <div class="mail-row" data-folders="{html.escape(t['folders'])}" onclick="loadEmail('data/{t['tid']}.html', this)">
             <div class="mail-row-header">
                 <div class="mail-row-sender">{html.escape(t['sender'][:30])}</div>
-                <div class="mail-row-date">{html.escape(t['date_str'][:10])}</div>
+                <div class="mail-row-date">{formatted_date}</div>
             </div>
             <div class="mail-row-subject">
-                {html.escape(t['subj'])}{badge}
+                {badge}{html.escape(t['subj'])}
             </div>
         </div>
         """
