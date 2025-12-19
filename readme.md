@@ -1,23 +1,20 @@
 # Apple Mail Archive Tool: Retro Macintosh 3-Pane Viewer
-**Python Script for Mbox to HTML Conversion with Steve Jobs Minimalist UI**
+**Python Script for Mbox to HTML Conversion with Strict Threading & Minimalist UI**
 
-This open-source Python utility is a specialized email archiving tool designed to convert standard Apple Mail (.mbox) exports into a high-performance, self-contained 3-column web application. It features a retro user interface (UI) inspired by early System 7 Macintosh operating systems and Steve Jobs' minimalist design philosophy.
-
-
-
-## Search Engine Optimized Description
-This local email backup utility allows users to preserve their digital history in a privacy-focused, offline format. By converting Mbox files to HTML, it eliminates the need for bulky email clients while maintaining a professional, organized structure. This script is optimized for developers and researchers looking for a lightweight email forensics or personal data management solution.
+This open-source Python utility is a specialized email archiving tool designed to convert standard Apple Mail (.mbox) exports into a high-performance, self-contained 3-column web application. It features a retro user interface (UI) inspired by early System 7 Macintosh operating systems and uses advanced threading algorithms to reconstruct conversations accurately.
 
 ---
 
 ## Technical Specifications and Features
 
-* **3-Column Architecture:** Features a dedicated folder sidebar, a message list pane, and a primary reading pane for efficient navigation.
+* **Strict Graph Threading Engine (JWZ & Exchange):** Implements a dual-layer threading algorithm. It uses the standard JWZ algorithm (Message-ID references) and falls back to Microsoft's `Thread-Index` header to accurately group Outlook/Exchange conversations, preventing "fuzzy" matching errors.
+* **3-Column Architecture:** Features a dedicated folder sidebar, a thread-aware message list pane, and a primary reading pane.
+* **ISO Date Formatting:** All timestamps are normalized to `YYYY-MM-DD HH:MM` (24-hour format) for clarity and international consistency.
+* **Smart UI Indicators:** Threaded conversations display a message count badge *preceding* the subject line for quick scanning.
 * **International Encoding Support:** Robust handling for Cyrillic (Russian) characters, supporting KOI8-R and Windows-1251 encodings common in historical data.
-* **Mbox to HTML Conversion:** Transforms raw mailbox data into scannable, searchable, and responsive web pages.
 * **Inline Image Processing:** Automatically renders JPG, PNG, and GIF attachments directly within the email body using local file paths.
-* **No External Dependencies:** Built entirely on the Python Standard Library (mailbox, email, html). No pip installation or third-party libraries required.
-* **Privacy and Security:** All processing is done locally on your machine. No data is sent to the cloud, making it an ideal tool for sensitive data archiving.
+* **No External Dependencies:** Built entirely on the Python Standard Library (`mailbox`, `email`, `html`, `mimetypes`, `datetime`). No pip installation required.
+* **Privacy and Security:** All processing is done locally on your machine. No data is sent to the cloud.
 
 ---
 
@@ -27,7 +24,7 @@ This local email backup utility allows users to preserve their digital history i
 * Launch the Apple Mail application on macOS.
 * Select the desired mailboxes or folders.
 * Navigate to **Mailbox > Export Mailbox...**
-* Save the output to a local directory. This will create folders with the .mbox extension (e.g., MyExport).
+* Save the output to a local directory. This will create folders with the .mbox extension (e.g., `MyExport`).
 
 ### 2. Execution of the Python Script
 * Save the script as `main.py` on your computer.
@@ -35,28 +32,32 @@ This local email backup utility allows users to preserve their digital history i
     ```bash
     python3 main.py
     ```
-* When prompted for the input path, drag and drop the folder containing your .mbox files (e.g., MyExport) into the terminal window and press Enter.
+* When prompted for the input path, drag and drop the folder containing your .mbox files (e.g., `MyExport`) into the terminal window and press Enter.
+* **Note:** The script will output verbose debug logs ("Phase 1", "Phase 2") showing exactly how messages are being linked.
 
 ### 3. Archive Access
-* The script generates a new directory titled with your original folder name plus an _html suffix (e.g., MyExport_html).
+* The script generates a new directory titled with your original folder name plus a `_Debug_Threaded` suffix (e.g., `MyExport_Debug_Threaded`).
 * Launch the `index.html` file inside that new folder using any modern web browser to view your offline archive.
 
 ---
 
 ## Troubleshooting and Maintenance
 
-* **UTF-8 Standards:** If text characters appear incorrectly, ensure your browser is set to auto-detect UTF-8 encoding.
+* **Ghost Nodes:** If you see threads that seem to start in the middle of a conversation, it is likely because the original "root" email was not present in your export. The script handles this gracefully by creating invisible "ghost" parents to keep the tree structure intact.
 * **Relative Path Integrity:** Do not separate the `index.html` file from the `data` folder, as this will break the internal links and image references.
-* **Scalability:** The script is capable of handling thousands of messages; however, browser performance during the initial load may vary based on your hardware specifications.
+* **Browser Performance:** The script is capable of handling thousands of messages; however, extremely large archives (10,000+ threads) may require a few seconds to load the initial index.
 
 ---
 
 ## Metadata
-* **Version:** 3.1.0
-* **Developer Context:** Designed for users seeking a minimalist, distraction-free email reading environment.
+* **Version:** 4.0.0 (Strict Threading Update)
+* **Developer Context:** Designed for users seeking a minimalist, distraction-free email reading environment with forensic-level threading accuracy.
 * **License:** Open Source / MIT
 
 ---
 
+
+## Search Engine Optimized Description
+This local email backup utility allows users to preserve their digital history in a privacy-focused, offline format. By converting Mbox files to HTML, it eliminates the need for bulky email clients while maintaining a professional, organized structure. This script is optimized for developers and researchers looking for a lightweight email forensics or personal data management solution with robust conversation threading.
 ## SEO Keywords
-Email archiving software, Python Mbox converter, Apple Mail backup tool, Macintosh System 7 UI, Steve Jobs design aesthetic, offline email viewer, Russian email character fix, Cyrillic email decoder, open source email forensics, local email management, Mbox to HTML script.
+Email archiving software, Python Mbox converter, Apple Mail backup tool, JWZ threading algorithm, Microsoft Thread-Index parser, Macintosh System 7 UI, Steve Jobs design aesthetic, offline email viewer, Russian email character fix, Cyrillic email decoder, open source email forensics, local email management.
