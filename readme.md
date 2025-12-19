@@ -38,7 +38,7 @@ This open-source Python utility is a specialized email archiving tool designed t
 * **Note:** The script will output verbose debug logs ("Phase 1", "Phase 2") showing exactly how messages are being linked.
 
 ### 3. Archive Access
-* The script generates a new directory titled with your original folder name plus a `_Debug_Threaded` suffix (e.g., `MyExport_Debug_Threaded`).
+* The script generates a new directory titled with your original folder name plus a `_html` suffix (e.g., `MyExport_html`).
 * Launch the `index.html` file inside that new folder using any modern web browser to view your offline archive.
 
 ---
