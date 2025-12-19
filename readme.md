@@ -27,19 +27,19 @@ This local email backup utility allows users to preserve their digital history i
 * Launch the Apple Mail application on macOS.
 * Select the desired mailboxes or folders.
 * Navigate to **Mailbox > Export Mailbox...**
-* Save the output to a local directory. This will create folders with the .mbox extension.
+* Save the output to a local directory. This will create folders with the .mbox extension (e.g., MyExport).
 
 ### 2. Execution of the Python Script
-* Download the `main.py` file to your computer.
+* Save the script as `main.py` on your computer.
 * Open your Terminal and execute the following command:
     ```bash
     python3 main.py
     ```
-* When prompted for the input path, drag and drop the folder containing your .mbox files into the terminal window and press Enter.
+* When prompted for the input path, drag and drop the folder containing your .mbox files (e.g., MyExport) into the terminal window and press Enter.
 
 ### 3. Archive Access
-* The script generates a new directory titled `Mac_Mail_Archive_3Col`.
-* Launch the `index.html` file in any modern web browser (Chrome, Safari, Firefox) to view your offline archive.
+* The script generates a new directory titled with your original folder name plus an _html suffix (e.g., MyExport_html).
+* Launch the `index.html` file inside that new folder using any modern web browser to view your offline archive.
 
 ---
 
@@ -52,7 +52,7 @@ This local email backup utility allows users to preserve their digital history i
 ---
 
 ## Metadata
-* **Version:** 3.0.0
+* **Version:** 3.1.0
 * **Developer Context:** Designed for users seeking a minimalist, distraction-free email reading environment.
 * **License:** Open Source / MIT
 
